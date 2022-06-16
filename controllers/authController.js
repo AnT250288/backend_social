@@ -19,7 +19,7 @@ const authController = {
             }
             if (!validLength(password, 6, 20)) {
                 return response.status(400).json({
-                    message: "Password must be between 6 and 20 symbols"
+                    msg: "Password must be between 6 and 20 symbols"
                 })
             }
 
@@ -44,7 +44,7 @@ const authController = {
             await newUser.save()
 
             res.json({
-                message: "You successfully register in Social network",
+                msg: "You successfully register in Social network",
                 access_token,
                 user: {
                     ...newUser._doc,
@@ -53,7 +53,7 @@ const authController = {
             })
 
         } catch (err) {
-            res.status(500).json({message: err.message})
+            res.status(500).json({msg: err.msg})
         }
     },
 
@@ -81,7 +81,7 @@ const authController = {
 
 
             res.json({
-                message: "You successfully login in Social network",
+                msg: "You successfully login in Social network",
                 access_token,
                 user: {
                     ...user._doc,
@@ -89,9 +89,8 @@ const authController = {
                 }
             })
 
-
         } catch (err) {
-            res.status(500).json({message: err.message})
+            res.status(500).json({msg: err.msg})
         }
     },
 
@@ -100,7 +99,7 @@ const authController = {
             res.clearCookie('refreshtoken', {path: "/api/refresh_token"})
             res.json({msg: "Logged out"})
         } catch (err) {
-            res.status(500).json({message: err.message})
+            res.status(500).json({msg: err.msg})
         }
     },
 
@@ -128,7 +127,7 @@ const authController = {
                 })
             })
         } catch (err) {
-            res.status(500).json({message: err.message})
+            res.status(500).json({msg: err.msg})
         }
     }
 }
