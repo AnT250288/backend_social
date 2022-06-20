@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema({
             type: String,
             default: ''
         },
-        profileAvatar: {
+        avatar: {
             type: String,
             default: "https://cdn2.vectorstock.com/i/thumb-large/55/86/anonymous-icon-incognito-sign-privacy-vector-34705586.jpg",
         },
