@@ -46,7 +46,7 @@ const userSchema = mongoose.Schema({
         },
         coverPicture: {
             type: String,
-            default: '',
+            default: 'https://club.dns-shop.ru/api/v1/image/getOriginal/q93_e01c167a85d7712eba7c143431f6824145f0eb4199a5603ddadfd7e54273c4a1.jpg',
         },
         friends: [{type: mongoose.Types.ObjectId, ref: 'user'}],
         following: [{type: mongoose.Types.ObjectId, ref: 'user'}],
