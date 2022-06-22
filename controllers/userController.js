@@ -1,4 +1,5 @@
 const Users = require("../models/userModel")
+const e = require("express");
 
 
 const userController = {
@@ -21,6 +22,22 @@ const userController = {
             }
             res.json({user})
         } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    updateUser: async (req, res) => {
+        try {
+            const {fullName, story, phone, address} = req.body
+            if(!fullName){
+                return res.status(500).json({msg: "Full name is required"})
+            }
+
+            await Users.findByIdAndUpdate({_id: req.user},{
+                fullName, story, phone, address
+            })
+
+            res.json({msg: "update success"})
+        } catch (err){
             return res.status(500).json({msg: err.message})
         }
     }
