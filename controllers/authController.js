@@ -70,15 +70,14 @@ const authController = {
                 return res.status(400).json({msg: "Invalid password"})
             }
 
-            const access_token = createAccessToken({id: user._id})
-            const refresh_token = createRefreshToken({id: user._id})
+            const access_token = createAccessToken({_id: user._id})
+            const refresh_token = createRefreshToken({_id: user._id})
 
             res.cookie('refreshtoken', refresh_token, {
                 httpOnly: true,
                 path: "/api/refresh_token",
                 maxAge: 24 * 30 * 60 * 60 * 1000
             })
-
 
             res.json({
                 msg: "You successfully login in Social network",
@@ -114,13 +113,13 @@ const authController = {
                 if (err) {
                     return res.status(400).json({msg: "Please, LogIn"})
                 }
-                const user = await Users.findById(result.id).select("-password").populate("friends following")
+                const user = await Users.findById(result._id).select("-password").populate("friends following")
 
                 if (!user) {
                     return res.status(400).json({msg: "User not exist"})
                 }
 
-                const access_token = createAccessToken({id: result.id})
+                const access_token = createAccessToken({_id: result._id})
                 res.json({
                     access_token,
                     user
